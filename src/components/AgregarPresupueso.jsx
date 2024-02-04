@@ -1,4 +1,5 @@
 import { useState } from "react"
+import AlertError from "./AlertError";
 
 /* eslint-disable react/prop-types */
 const AgregarPresupueso = ({ presupuesto, setPresupuesto, setIsValid }) => {
@@ -24,9 +25,9 @@ const AgregarPresupueso = ({ presupuesto, setPresupuesto, setIsValid }) => {
                     className="formulario">
                     {
                         showAlert && (
-                            <div className="alerta error">
-                                El presupuesto tiene que ser mayor a 0
-                            </div>
+                            <AlertError tipo={'error'}>
+                                El presupuesto tiene que ser menor a 0
+                            </AlertError>
                         )
                     }
                     <div className="campo">
