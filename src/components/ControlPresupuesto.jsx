@@ -2,31 +2,35 @@
 import { useEffect, useState } from "react";
 import Item from "./Item";
 
-function ControlPresupuesto({ presupuesto, setPresupuesto, setIsValid }) {
-    const [controlGasto, setControlGasto] = useState();
+function ControlPresupuesto({ total, presupuesto, setPresupuesto, setIsValid }) {
+    const [disponible, setDisponible] = useState(0);
+    const [gastado, setGastado] = useState(0);
 
-    const effectHandlerControlGasto = () => {
-        const data = localStorage.getItem("gasto_total");
-        const storage = data ? JSON.parse(+data) : 0;
-        setControlGasto(+storage + +presupuesto);
-        localStorage.setItem("gasto_total", controlGasto)
-        
-    }
-    useEffect(effectHandlerControlGasto,[controlGasto, presupuesto])
+    useEffect(
+        () => { 
+            const reduce = total.reduce((acc, value) => +value.presupuesto + +acc, 0);
+            const t_disponible = +presupuesto - +reduce;
+            setGastado(reduce);
+            setDisponible(t_disponible);
+        }, [presupuesto, total]
+    );
+   
     const handleReset = (ev) => {
         ev.preventDefault();
 
-        setPresupuesto();
+        setPresupuesto(0);
         setIsValid(false);
+        localStorage.clear();
     };
-    const formatText = (value) => {
-        return value.toLocaleString('es-AR', {
-            style: 'currency',
-            currency: 'USD'
-        });
+    const formatText = (value = 0) => {
+        if (value) {
+            return value.toLocaleString('es-AR', {
+                style: 'currency',
+                currency: 'USD'
+            });
+        }
     }
     
-
     return (
         <div className="contenedor-presupuesto contenedor sombra dos-columnas">
             <div>
@@ -39,10 +43,10 @@ function ControlPresupuesto({ presupuesto, setPresupuesto, setIsValid }) {
                     <Item fn={formatText} value={+presupuesto}>
                         <span>Presupuesto: </span> 
                     </Item>
-                    <Item fn={formatText} value={Number(presupuesto) - 100}>
+                    <Item fn={formatText} value={+disponible}>
                         <span>Disponible: </span>
                     </Item>
-                    <Item fn={formatText} value={controlGasto}>
+                    <Item fn={formatText} value={+gastado}>
                         <span>Gastado: </span> 
                     </Item>
                 </div>  

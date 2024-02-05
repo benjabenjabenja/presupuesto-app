@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import cerrarModal from '../assets/img/cerrar.svg';
 import AlertError from './AlertError';
+import { randomId, opts_select_nuevo_gasto } from '../helpers/index';
+
 const Modal = ({ setModal, animate, setAnimate, setNuevoGasto }) => {
     const [nombreGasto, setNombreGasto] = useState('');
     const [cantidad, setCantidad] = useState(0);
@@ -9,31 +11,9 @@ const Modal = ({ setModal, animate, setAnimate, setNuevoGasto }) => {
     const [options, setOptions] = useState([]);
     const [showAlert, setShowAlert] = useState(false);
 
-    const randomId = () => {
-        return '_' + Math.random().toString(36).substring(2, 9) + Date.now();
-    }
-
     useEffect(() => {
-        const opts = [
-            {
-                value: 'suscripciones', text: 'Suscripciones',
-            },
-            {
-                value: 'ahorro', text: 'Ahorro',
-            },
-            {
-                value: 'comida', text: 'Comida',
-            },
-            {
-                value: 'vacaciones', text: 'Vacaciones',
-            },
-            {
-                value: 'servicios', text: 'Servicios',
-            }
-        ];
-        opts.forEach(o => o.id = randomId());
-
-        setOptions(opts);
+        opts_select_nuevo_gasto.forEach(o => o.id = randomId());
+        setOptions(opts_select_nuevo_gasto);
         }, []
     );
 
@@ -61,7 +41,8 @@ const Modal = ({ setModal, animate, setAnimate, setNuevoGasto }) => {
         const obj = {
             presupuesto: cantidad,
             nombreGasto,
-            categoria
+            categoria,
+            id: randomId()
         }; 
         setNuevoGasto(obj);
         

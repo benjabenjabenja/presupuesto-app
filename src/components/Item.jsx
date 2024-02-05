@@ -4,7 +4,7 @@ const Item = ({ children, fn, value }) => {
     return (
         <p>
             {children}
-            {fn(value)}
+            {value ? fn(value) : 0}
         </p>
     );
 };
