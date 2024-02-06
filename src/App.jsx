@@ -132,6 +132,7 @@ function App() {
 				animate={animate}
 				setAnimate={setAnimate}
 				setNuevoGasto={setNuevoGasto}
+				setEditarGasto={setEditarGasto}
 				editarGasto={editarGasto}
 			/>}
 			

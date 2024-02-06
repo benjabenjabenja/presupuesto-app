@@ -6,7 +6,7 @@ import cerrarModal from '../assets/img/cerrar.svg';
 import AlertError from './AlertError';
 import { randomId, opts_select_nuevo_gasto } from '../helpers/index';
 
-const Modal = ({ setModal, animate, setAnimate, setNuevoGasto, editarGasto }) => {
+const Modal = ({ setModal, animate, setAnimate, setNuevoGasto, setEditarGasto, editarGasto }) => {
     const [nombreGasto, setNombreGasto] = useState('');
     const [cantidad, setCantidad] = useState(0);
     const [categoria, setCategoria] = useState('');
@@ -41,6 +41,7 @@ const Modal = ({ setModal, animate, setAnimate, setNuevoGasto, editarGasto }) =>
         ev.preventDefault();
 
         setAnimate(false);
+        setEditarGasto({});
         setTimeout(() => setModal(false), 600);
     };
 
