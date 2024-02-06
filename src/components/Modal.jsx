@@ -116,7 +116,7 @@ const Modal = ({ setModal, animate, setAnimate, setNuevoGasto, setEditarGasto, e
                 </div>
 
                 <div className="campo">
-                    <label htmlFor="cantidad">Canatidad</label>
+                    <label htmlFor="cantidad">Cantidad</label>
                     <input
                         id='cantidad'
                         type="number"

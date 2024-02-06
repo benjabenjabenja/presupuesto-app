@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
 import Item from "./Item";
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 function ControlPresupuesto({ total, presupuesto, setReset }) {
@@ -15,11 +15,11 @@ function ControlPresupuesto({ total, presupuesto, setReset }) {
             const reduce = total.reduce((acc, value) => +value.presupuesto + +acc, 0);
             const t_disponible = +presupuesto - +reduce;
 
-            const update_porcentaje = (((+presupuesto - t_disponible) / +presupuesto) * 100).toFixed(2);
-            setPorcentaje(update_porcentaje);
-
+            const update_porcentaje = (((+presupuesto - t_disponible) / +presupuesto) * 100).toFixed(0);
+            
             setGastado(reduce);
             setDisponible(t_disponible);
+            setTimeout(() => setPorcentaje(update_porcentaje), 300);
         }, [presupuesto, total]
     );
    
@@ -41,7 +41,13 @@ function ControlPresupuesto({ total, presupuesto, setReset }) {
         <div className="contenedor-presupuesto contenedor sombra dos-columnas">
             <div>
                 <CircularProgressbar
-                    value={porcentaje} text={`${porcentaje}%`}
+                    styles={buildStyles({
+                        pathColor: '#3B82F6',
+                        trailColor: '#F5F5F5',
+                        textColor: '#3B82F6'
+                    })}
+                    value={porcentaje}
+                    text={`${porcentaje}% Gasto`}
                 />
             </div>
             <div className="contenido-presupuesto">
