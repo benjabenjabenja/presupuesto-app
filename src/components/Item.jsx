@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 
-const Item = ({ children, fn, value }) => {
+const Item = ({ children, classess, fn, value }) => {
     return (
-        <p>
+        <p className={classess}>
             {children}
             {value ? fn(value) : 0}
         </p>
