@@ -23,7 +23,6 @@ function App() {
 		() => {
 			const data = +localStorage.getItem('data') || 0;
 			const t = JSON.parse(localStorage.getItem("total")) || [];
-			console.log({ t })
 			setPresupuesto(data);
 			setTotal(t);
 		}, []
