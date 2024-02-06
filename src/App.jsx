@@ -37,6 +37,8 @@ function App() {
 				setReset(false);
 				setEditarGasto({});
 				setModal(false);
+
+				localStorage.clear();
 			}
 		}, [reset]
 	);
