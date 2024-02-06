@@ -6,6 +6,7 @@ import Modal from "./components/Modal";
 import ListaGastos from "./components/ListaGastos";
 import "./App.css";
 import { randomId } from "./helpers";
+import Filtro from "./components/Filtro";
 
 function App() {
 	const [presupuesto, setPresupuesto] = useState(0);
@@ -18,6 +19,9 @@ function App() {
 	const [nuevoGasto, setNuevoGasto] = useState({});
 	const [editarGasto, setEditarGasto] = useState({});
 	const [eliminarGasto, setEliminarGasto] = useState('');
+
+	const [filtroGasto, setFiltroGasto] = useState('');
+	const [filtrados, setFiltrados] = useState([]);
 
 	useEffect(
 		() => {
@@ -94,6 +98,14 @@ function App() {
 
 	useEffect(
 		() => {
+			const filtered = total.filter(v => v.categoria === filtroGasto);
+			setFiltrados(filtered);
+		}, [filtroGasto]
+	);
+
+
+	useEffect(
+		() => {
 			localStorage.setItem("total", JSON.stringify(total));
 		}, [total]
 	);
@@ -121,7 +133,16 @@ function App() {
 				isValid && (
 					<>
 						<main>
-							<ListaGastos total={total} setEditarGasto={setEditarGasto} setEliminarGasto={setEliminarGasto} />
+							<Filtro
+								filtroGasto={filtroGasto}
+								setFiltroGasto={setFiltroGasto}
+							/>
+							<ListaGastos
+								total={total}
+								setEditarGasto={setEditarGasto}
+								setEliminarGasto={setEliminarGasto}
+								filtrados={filtrados}
+							/>
 						</main>
 						<div className="nuevo-gasto">
 							<img src={IconPlus} alt="icon Nuevo gasto" onClick={handleNuevoGasto}/>	
