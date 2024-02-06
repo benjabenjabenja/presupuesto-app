@@ -16,7 +16,7 @@ function App() {
 
 	useEffect(
 		() => {
-			const data = +localStorage.getItem('data') || '100';
+			const data = +localStorage.getItem('data') || 0;
 			setPresupuesto(data);
 		}, []
 	);
