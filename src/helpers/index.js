@@ -30,9 +30,6 @@ const reference_icons = {
 export const getIcon = icon_name => icon_name && reference_icons[icon_name];
 export const opts_select_nuevo_gasto = [
     {
-        value: '', text: '--Seleccionar--'
-    },
-    {
         value: 'suscripciones', text: 'Suscripciones'
     },
     {

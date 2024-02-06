@@ -61,7 +61,7 @@ function ControlPresupuesto({ total, presupuesto, setReset }) {
                     <Item classess={`${disponible < 0 ? 'negativo' : ''}`} fn={formatText} value={+disponible}>
                         <span>Disponible: </span>
                     </Item>
-                <Item classess={`${disponible < gastado ? 'negativo' : ''}`} fn={formatText} value={+gastado}>
+                    <Item classess={`${disponible < gastado ? 'negativo' : ''}`} fn={formatText} value={+gastado}>
                         <span>Gastado: </span> 
                     </Item>
                 </div>  

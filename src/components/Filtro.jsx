@@ -16,6 +16,7 @@ const Filtro = ({ filtroGasto, setFiltroGasto }) => {
                 <div className="campo">
                     <label htmlFor="filtro">Filtrar: </label>
                     <select id="filtro" value={filtroGasto} onChange={ev => setFiltroGasto(ev.target.value)}>
+                        <option value="">--Seleccionar--</option>
                         {
                             options && options.map( o => (<option value={o.value} key={o.id}>{o.text}</option>) )
                         }
