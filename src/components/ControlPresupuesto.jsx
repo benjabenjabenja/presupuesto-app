@@ -26,7 +26,8 @@ function ControlPresupuesto({ total, presupuesto, setReset }) {
     const handleReset = (ev) => {
         ev.preventDefault();
 
-        setReset(true);
+        const r = confirm('Seguro desea borrar los datos ?');
+        r && setReset(true);
     };
     const formatText = (value = 0) => {
         if (value) {
