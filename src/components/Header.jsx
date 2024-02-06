@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import AgregarPresupueso from "./AgregarPresupueso";
 import ControlPresupuesto from "./ControlPresupuesto";
 
-const Header = ({ total, presupuesto, setPresupuesto, isValid, setIsValid }) => {
+const Header = ({ total, presupuesto, setPresupuesto, isValid, setIsValid, setReset }) => {
     const [showComponent, setShowComponent] = useState(false);
     useEffect(
 		() => {
@@ -20,8 +20,7 @@ const Header = ({ total, presupuesto, setPresupuesto, isValid, setIsValid }) => 
                         <ControlPresupuesto
                             total={total}
                             presupuesto={presupuesto}
-                            setPresupuesto={setPresupuesto}
-                            setIsValid={setIsValid}
+                            setReset={setReset}
                         />
                     </> :
                     <AgregarPresupueso

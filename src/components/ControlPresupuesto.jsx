@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Item from "./Item";
 
-function ControlPresupuesto({ total, presupuesto, setPresupuesto, setIsValid }) {
+function ControlPresupuesto({ total, presupuesto, setReset }) {
     const [disponible, setDisponible] = useState(0);
     const [gastado, setGastado] = useState(0);
 
@@ -18,9 +18,7 @@ function ControlPresupuesto({ total, presupuesto, setPresupuesto, setIsValid }) 
     const handleReset = (ev) => {
         ev.preventDefault();
 
-        setPresupuesto(0);
-        setIsValid(false);
-        localStorage.clear();
+        setReset(true);
     };
     const formatText = (value = 0) => {
         if (value) {

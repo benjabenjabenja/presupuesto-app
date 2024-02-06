@@ -10,17 +10,15 @@ import {
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
 
-const Gasto = ({ gasto }) => {
-    const { categoria, presupuesto, nombreGasto, create_at } = gasto;
-    const handleEliminar = () => {
-        console.log('eliminar');
-    }
-    const handleEditar = () => {
-        console.log('editar');
-    }
+const Gasto = ({ gasto, setEditarGasto, setEliminarGasto }) => {
+    const { categoria, presupuesto, nombreGasto, create_at, id } = gasto;
+
+    const handleEditar = gasto => setEditarGasto(gasto);
+    const handleEliminar = () => setEliminarGasto(id);
+
     const leadingActions = () => (
         <LeadingActions>
-            <SwipeAction onClick={handleEditar}>Editar</SwipeAction>
+            <SwipeAction onClick={() => handleEditar(gasto)}>Editar</SwipeAction>
         </LeadingActions>
     );
     const trailingActions = () => (
