@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import Header from "./components/header";
+import Header from "./components/Header";
 import IconPlus from './assets/img/nuevo-gasto.svg';
 import Modal from "./components/Modal";
 import ListaGastos from "./components/ListaGastos";
