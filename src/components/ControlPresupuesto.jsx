@@ -42,9 +42,9 @@ function ControlPresupuesto({ total, presupuesto, setReset }) {
             <div>
                 <CircularProgressbar
                     styles={buildStyles({
-                        pathColor: '#3B82F6',
+                        pathColor: porcentaje >= 100 ? '#b91c1c' : '#3B82F6',
                         trailColor: '#F5F5F5',
-                        textColor: '#3B82F6'
+                        textColor: porcentaje >= 100 ? '#b91c1c' :'#3B82F6'
                     })}
                     value={porcentaje}
                     text={`${porcentaje}% Gasto`}
